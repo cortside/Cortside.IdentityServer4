@@ -1,10 +1,7 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using FluentAssertions;
 using IdentityServer.UnitTests.Common;
 using IdentityServer4;
@@ -12,6 +9,9 @@ using IdentityServer4.Configuration;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
 using IdentityServer4.Validation;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace IdentityServer.UnitTests.Services.Default
@@ -36,7 +36,7 @@ namespace IdentityServer.UnitTests.Services.Default
         {
             _mockMockHttpContextAccessor = new MockHttpContextAccessor(_options, _mockUserSession, _mockEndSessionStore);
 
-            _subject = new DefaultIdentityServerInteractionService(new StubClock(), 
+            _subject = new DefaultIdentityServerInteractionService(new StubClock(),
                 _mockMockHttpContextAccessor,
                 _mockLogoutMessageStore,
                 _mockErrorMessageStore,
@@ -51,7 +51,7 @@ namespace IdentityServer.UnitTests.Services.Default
             _resourceValidationResult.Resources.IdentityResources.Add(new IdentityResources.OpenId());
             _resourceValidationResult.ParsedScopes.Add(new ParsedScopeValue("openid"));
         }
-        
+
         [Fact]
         public async Task GetLogoutContextAsync_valid_session_and_logout_id_should_not_provide_signout_iframe()
         {
@@ -113,11 +113,11 @@ namespace IdentityServer.UnitTests.Services.Default
         public void GrantConsentAsync_should_throw_if_granted_and_no_subject()
         {
             Func<Task> act = () => _subject.GrantConsentAsync(
-                new AuthorizationRequest(), 
-                new ConsentResponse() { ScopesValuesConsented = new[] { "openid" } }, 
+                new AuthorizationRequest(),
+                new ConsentResponse() { ScopesValuesConsented = new[] { "openid" } },
                 null);
 
-            act.Should().Throw<ArgumentNullException>()
+            act.Should().ThrowAsync<ArgumentNullException>().Result
                 .And.Message.Should().Contain("subject");
         }
 
@@ -137,7 +137,8 @@ namespace IdentityServer.UnitTests.Services.Default
         {
             _mockUserSession.User = new IdentityServerUser("bob").CreatePrincipal();
 
-            var req = new AuthorizationRequest() { 
+            var req = new AuthorizationRequest()
+            {
                 Client = new Client { ClientId = "client" },
                 ValidatedResources = _resourceValidationResult
             };

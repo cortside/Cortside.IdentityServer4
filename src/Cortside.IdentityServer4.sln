@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4.Storage", "Storage\src\IdentityServer4.Storage.csproj", "{54D73F59-6B10-4CAC-915E-0A5E52BF5DC3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4.AspNetIdentity", "AspNetIdentity\src\IdentityServer4.AspNetIdentity.csproj", "{EA5D4E99-D67A-4F8F-A4C5-2D4B7A2B3486}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4.EntityFramework", "EntityFramework\src\IdentityServer4.EntityFramework.csproj", "{CF39C3E0-665A-4E8A-B84F-9843061FEE8D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4.EntityFramework.Storage", "EntityFramework.Storage\src\IdentityServer4.EntityFramework.Storage.csproj", "{6228A073-8F7F-4564-9B36-C124DB8A9CAD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4", "IdentityServer4\src\IdentityServer4.csproj", "{DA0CE4F5-F3AE-4115-95E9-4117F8F15469}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4.EntityFramework.Tests", "EntityFramework\test\IdentityServer4.EntityFramework.Tests\IdentityServer4.EntityFramework.Tests.csproj", "{A6582258-4683-456D-91FB-4591FB3B121E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4.EntityFramework.IntegrationTests", "EntityFramework.Storage\test\IntegrationTests\IdentityServer4.EntityFramework.IntegrationTests.csproj", "{C2D94FEC-98C3-4324-BD6C-6D1C50DC590D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4.EntityFramework.UnitTests", "EntityFramework.Storage\test\UnitTests\IdentityServer4.EntityFramework.UnitTests.csproj", "{C65ED6C2-87B1-41D2-8EB0-3FB1750FA182}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4.IntegrationTests", "IdentityServer4\test\IdentityServer.IntegrationTests\IdentityServer4.IntegrationTests.csproj", "{EDB799C4-8DA4-4AF7-B0AB-8178BADFFB52}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4.UnitTests", "IdentityServer4\test\IdentityServer.UnitTests\IdentityServer4.UnitTests.csproj", "{BA72A5DB-E750-4E7E-8730-6210CFCEC15F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54D73F59-6B10-4CAC-915E-0A5E52BF5DC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54D73F59-6B10-4CAC-915E-0A5E52BF5DC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54D73F59-6B10-4CAC-915E-0A5E52BF5DC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54D73F59-6B10-4CAC-915E-0A5E52BF5DC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA5D4E99-D67A-4F8F-A4C5-2D4B7A2B3486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA5D4E99-D67A-4F8F-A4C5-2D4B7A2B3486}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA5D4E99-D67A-4F8F-A4C5-2D4B7A2B3486}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA5D4E99-D67A-4F8F-A4C5-2D4B7A2B3486}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF39C3E0-665A-4E8A-B84F-9843061FEE8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF39C3E0-665A-4E8A-B84F-9843061FEE8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF39C3E0-665A-4E8A-B84F-9843061FEE8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF39C3E0-665A-4E8A-B84F-9843061FEE8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6228A073-8F7F-4564-9B36-C124DB8A9CAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6228A073-8F7F-4564-9B36-C124DB8A9CAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6228A073-8F7F-4564-9B36-C124DB8A9CAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6228A073-8F7F-4564-9B36-C124DB8A9CAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA0CE4F5-F3AE-4115-95E9-4117F8F15469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA0CE4F5-F3AE-4115-95E9-4117F8F15469}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA0CE4F5-F3AE-4115-95E9-4117F8F15469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA0CE4F5-F3AE-4115-95E9-4117F8F15469}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6582258-4683-456D-91FB-4591FB3B121E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6582258-4683-456D-91FB-4591FB3B121E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6582258-4683-456D-91FB-4591FB3B121E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6582258-4683-456D-91FB-4591FB3B121E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2D94FEC-98C3-4324-BD6C-6D1C50DC590D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2D94FEC-98C3-4324-BD6C-6D1C50DC590D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2D94FEC-98C3-4324-BD6C-6D1C50DC590D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2D94FEC-98C3-4324-BD6C-6D1C50DC590D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C65ED6C2-87B1-41D2-8EB0-3FB1750FA182}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C65ED6C2-87B1-41D2-8EB0-3FB1750FA182}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C65ED6C2-87B1-41D2-8EB0-3FB1750FA182}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C65ED6C2-87B1-41D2-8EB0-3FB1750FA182}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDB799C4-8DA4-4AF7-B0AB-8178BADFFB52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDB799C4-8DA4-4AF7-B0AB-8178BADFFB52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDB799C4-8DA4-4AF7-B0AB-8178BADFFB52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDB799C4-8DA4-4AF7-B0AB-8178BADFFB52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA72A5DB-E750-4E7E-8730-6210CFCEC15F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA72A5DB-E750-4E7E-8730-6210CFCEC15F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA72A5DB-E750-4E7E-8730-6210CFCEC15F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA72A5DB-E750-4E7E-8730-6210CFCEC15F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {176723F7-4A9B-4F05-A9F3-3BA715E4BDC3}
+	EndGlobalSection
+EndGlobal

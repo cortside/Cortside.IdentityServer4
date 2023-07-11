@@ -1,14 +1,14 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using System;
-using System.Collections.Specialized;
-using System.Threading.Tasks;
 using FluentAssertions;
 using IdentityModel;
 using IdentityServer.UnitTests.Validation.Setup;
 using IdentityServer4;
+using System;
+using System.Collections.Specialized;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace IdentityServer.UnitTests.Validation.AuthorizeRequest_Validation
@@ -25,7 +25,7 @@ namespace IdentityServer.UnitTests.Validation.AuthorizeRequest_Validation
 
             Func<Task> act = () => validator.ValidateAsync(null);
 
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

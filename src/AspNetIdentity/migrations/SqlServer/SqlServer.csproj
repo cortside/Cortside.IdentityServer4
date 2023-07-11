@@ -9,7 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\host\Host.csproj" />
     <ProjectReference Include="..\..\src\IdentityServer4.AspNetIdentity.csproj" />
   </ItemGroup>
 
