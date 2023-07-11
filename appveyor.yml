@@ -19,8 +19,8 @@ environment:
   SONAR_TOKEN:
     secure: phh0QRolDdonYwJR4mp8tpGz49RXyhD84BDLjPVnK98R2J/ARO6a4qDwqDBgFaxh
   SONAR_PROJECT: cortside_Cortside.IdentityServer4
-  RESTRICTED_WORDS:
-    secure: y2oCk9wYmgBAzk4m1tsSFUOlcEePEjozzMCfC0p6NQI=
+#  RESTRICTED_WORDS:
+#    secure: y2oCk9wYmgBAzk4m1tsSFUOlcEePEjozzMCfC0p6NQI=
 
 init:
 - ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
