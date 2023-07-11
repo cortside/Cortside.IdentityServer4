@@ -37,7 +37,7 @@ before_build:
 - appveyor-retry dotnet restore src -v Minimal
 - set DNX_BUILD_VERSION=%APPVEYOR_BUILD_NUMBER%
 - dotnet --info
-- ps: ./prebuild.ps1
+#- ps: ./prebuild.ps1
 
 build:
   publish_nuget: true
