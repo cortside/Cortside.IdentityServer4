@@ -1,4 +1,4 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
@@ -34,6 +34,7 @@ namespace IdentityServer4.Events
                 if (request.Subject != null && request.Subject.Identity.IsAuthenticated)
                 {
                     SubjectId = request.Subject?.GetSubjectId();
+                    UserPrincipalName = request.Subject?.GetUserPrincipalName();
                 }
             }
 
@@ -59,6 +60,7 @@ namespace IdentityServer4.Events
                 if (result.ValidatedRequest.Subject != null && result.ValidatedRequest.Subject.Identity.IsAuthenticated)
                 {
                     SubjectId = result.ValidatedRequest.Subject.GetSubjectId();
+                    UserPrincipalName = result.ValidatedRequest.Subject?.GetUserPrincipalName();
                 }
             }
 
@@ -117,6 +119,14 @@ namespace IdentityServer4.Events
         /// The subject identifier.
         /// </value>
         public string SubjectId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user principal name.
+        /// </summary>
+        /// <value>
+        /// User principal name OR subjectid if not set
+        /// </value>
+        public string UserPrincipalName { get; set; }
 
         /// <summary>
         /// Gets or sets the scopes.

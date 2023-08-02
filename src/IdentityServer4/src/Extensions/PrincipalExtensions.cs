@@ -1,7 +1,6 @@
 // Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
-
 using IdentityModel;
 using System;
 using System.Collections.Generic;
@@ -50,7 +49,7 @@ namespace IdentityServer4.Extensions
             var claim = id.FindFirst(JwtClaimTypes.AuthenticationTime);
 
             if (claim == null) throw new InvalidOperationException("auth_time is missing.");
-           
+
             return long.Parse(claim.Value);
         }
 
@@ -215,6 +214,33 @@ namespace IdentityServer4.Extensions
         public static bool IsAuthenticated(this IPrincipal principal)
         {
             return principal != null && principal.Identity != null && principal.Identity.IsAuthenticated;
+        }
+
+        /// <summary>
+        /// Gets the subject identifier.
+        /// </summary>
+        /// <param name="principal">The principal.</param>
+        /// <returns></returns>
+        [DebuggerStepThrough]
+        public static string GetUserPrincipalName(this IPrincipal principal)
+        {
+            return principal.Identity.GetUserPrincipalName();
+        }
+
+        /// <summary>
+        /// Gets the subject identifier.
+        /// </summary>
+        /// <param name="identity">The identity.</param>
+        /// <returns></returns>
+        /// <exception cref="System.InvalidOperationException">sub claim is missing</exception>
+        [DebuggerStepThrough]
+        public static string GetUserPrincipalName(this IIdentity identity)
+        {
+            var id = identity as ClaimsIdentity;
+            var claim = id.FindFirst("upn");
+            var upn = claim?.Value ?? id.GetSubjectId();
+
+            return upn;
         }
     }
 }
