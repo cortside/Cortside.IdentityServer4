@@ -29,7 +29,7 @@ namespace IdentityServer4.Events
             RedirectUri = response.RedirectUri;
             Endpoint = EndpointNames.Authorize;
             SubjectId = response.Request.Subject.GetSubjectId();
-            UserPrincipalName = response.Request.Subject.GetUserPrincipalName();
+            Username = response.Request.Subject.GetUserPrincipalName();
             Scopes = response.Scope;
             GrantType = response.Request.GrantType;
 
@@ -55,7 +55,7 @@ namespace IdentityServer4.Events
         /// <value>
         /// User principal name OR subjectid if not set
         /// </value>
-        public string UserPrincipalName { get; set; }
+        public string Username { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TokenIssuedSuccessEvent"/> class.
@@ -69,7 +69,7 @@ namespace IdentityServer4.Events
             ClientName = request.ValidatedRequest.Client.ClientName;
             Endpoint = EndpointNames.Token;
             SubjectId = request.ValidatedRequest.Subject?.GetSubjectId();
-            UserPrincipalName = request.ValidatedRequest.Subject?.GetUserPrincipalName();
+            Username = request.ValidatedRequest.Subject?.GetUserPrincipalName();
             GrantType = request.ValidatedRequest.GrantType;
 
             if (GrantType == OidcConstants.GrantTypes.RefreshToken)

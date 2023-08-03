@@ -1,4 +1,4 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
@@ -14,15 +14,17 @@ namespace IdentityServer4.Events
         /// Initializes a new instance of the <see cref="UserLogoutSuccessEvent"/> class.
         /// </summary>
         /// <param name="subjectId">The subject identifier.</param>
-        /// <param name="name">The name.</param>
-        public UserLogoutSuccessEvent(string subjectId, string name)
-            : base(EventCategories.Authentication, 
+        /// <param name="displayName">The name.</param>
+        /// <param name="username">The username.</param>
+        public UserLogoutSuccessEvent(string subjectId, string displayName, string username = null)
+            : base(EventCategories.Authentication,
                   "User Logout Success",
-                  EventTypes.Success, 
+                  EventTypes.Success,
                   EventIds.UserLogoutSuccess)
         {
             SubjectId = subjectId;
-            DisplayName = name;
+            DisplayName = displayName;
+            Username = username;
         }
 
         /// <summary>
@@ -40,5 +42,13 @@ namespace IdentityServer4.Events
         /// The display name.
         /// </value>
         public string DisplayName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the username.
+        /// </summary>
+        /// <value>
+        /// The username.
+        /// </value>
+        public string Username { get; set; }
     }
 }

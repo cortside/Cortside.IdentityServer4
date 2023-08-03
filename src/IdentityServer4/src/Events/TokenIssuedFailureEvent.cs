@@ -34,7 +34,7 @@ namespace IdentityServer4.Events
                 if (request.Subject != null && request.Subject.Identity.IsAuthenticated)
                 {
                     SubjectId = request.Subject?.GetSubjectId();
-                    UserPrincipalName = request.Subject?.GetUserPrincipalName();
+                    Username = request.Subject?.GetUserPrincipalName();
                 }
             }
 
@@ -60,7 +60,7 @@ namespace IdentityServer4.Events
                 if (result.ValidatedRequest.Subject != null && result.ValidatedRequest.Subject.Identity.IsAuthenticated)
                 {
                     SubjectId = result.ValidatedRequest.Subject.GetSubjectId();
-                    UserPrincipalName = result.ValidatedRequest.Subject?.GetUserPrincipalName();
+                    Username = result.ValidatedRequest.Subject?.GetUserPrincipalName();
                 }
             }
 
@@ -126,7 +126,7 @@ namespace IdentityServer4.Events
         /// <value>
         /// User principal name OR subjectid if not set
         /// </value>
-        public string UserPrincipalName { get; set; }
+        public string Username { get; set; }
 
         /// <summary>
         /// Gets or sets the scopes.
