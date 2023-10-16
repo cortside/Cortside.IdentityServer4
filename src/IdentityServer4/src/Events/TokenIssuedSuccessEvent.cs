@@ -1,4 +1,4 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
@@ -29,6 +29,7 @@ namespace IdentityServer4.Events
             RedirectUri = response.RedirectUri;
             Endpoint = EndpointNames.Authorize;
             SubjectId = response.Request.Subject.GetSubjectId();
+            Username = response.Request.Subject.GetUserPrincipalName();
             Scopes = response.Scope;
             GrantType = response.Request.GrantType;
 
@@ -49,6 +50,14 @@ namespace IdentityServer4.Events
         }
 
         /// <summary>
+        /// Gets or sets the user principal name.
+        /// </summary>
+        /// <value>
+        /// User principal name OR subjectid if not set
+        /// </value>
+        public string Username { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="TokenIssuedSuccessEvent"/> class.
         /// </summary>
         /// <param name="response">The response.</param>
@@ -60,6 +69,7 @@ namespace IdentityServer4.Events
             ClientName = request.ValidatedRequest.Client.ClientName;
             Endpoint = EndpointNames.Token;
             SubjectId = request.ValidatedRequest.Subject?.GetSubjectId();
+            Username = request.ValidatedRequest.Subject?.GetUserPrincipalName();
             GrantType = request.ValidatedRequest.GrantType;
 
             if (GrantType == OidcConstants.GrantTypes.RefreshToken)

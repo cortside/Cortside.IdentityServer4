@@ -1,12 +1,7 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Text.Json;
-using System.Threading.Tasks;
 using FluentAssertions;
 using IdentityServer.UnitTests.Common;
 using IdentityServer4;
@@ -14,6 +9,11 @@ using IdentityServer4.Models;
 using IdentityServer4.ResponseHandling;
 using IdentityServer4.Stores;
 using IdentityServer4.Validation;
+using System;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Text.Json;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace IdentityServer.UnitTests.ResponseHandling
@@ -114,7 +114,7 @@ namespace IdentityServer.UnitTests.ResponseHandling
         {
             _identityResources.Add(new IdentityResource("id1", new[] { "foo" }));
             _identityResources.Add(new IdentityResource("id2", new[] { "bar" }));
-            
+
             var address = new
             {
                 street_address = "One Hacker Way",
@@ -122,7 +122,7 @@ namespace IdentityServer.UnitTests.ResponseHandling
                 postal_code = 69118,
                 country = "Germany"
             };
-            
+
             _mockProfileService.ProfileClaims = new[]
             {
                 new Claim("email", "fred@gmail.com"),
@@ -152,11 +152,11 @@ namespace IdentityServer.UnitTests.ResponseHandling
             claims["email"].Should().Be("fred@gmail.com");
             claims.Should().ContainKey("name");
             claims["name"].Should().Be("fred jones");
-            
+
             // this will be treated as a string because this is not valid JSON from the System.Text library point of view
             claims.Should().ContainKey("address");
             claims["address"].Should().Be("{ 'street_address': 'One Hacker Way', 'locality': 'Heidelberg', 'postal_code': 69118, 'country': 'Germany' }");
-            
+
             // this is a JsonElement
             claims.Should().ContainKey("address2");
             claims["address2"].ToString().Should().Be("{\"street_address\":\"One Hacker Way\",\"locality\":\"Heidelberg\",\"postal_code\":69118,\"country\":\"Germany\"}");
@@ -216,7 +216,7 @@ namespace IdentityServer.UnitTests.ResponseHandling
 
             Func<Task> act = () => _subject.ProcessAsync(result);
 
-            act.Should().Throw<InvalidOperationException>()
+            act.Should().ThrowAsync<InvalidOperationException>().Result
                 .And.Message.Should().Contain("subject");
         }
 

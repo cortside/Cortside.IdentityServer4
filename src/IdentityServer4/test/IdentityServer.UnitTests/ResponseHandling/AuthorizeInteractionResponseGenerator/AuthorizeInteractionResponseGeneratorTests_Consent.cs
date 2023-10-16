@@ -2,17 +2,17 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using FluentAssertions;
 using IdentityModel;
 using IdentityServer.UnitTests.Common;
 using IdentityServer4.Configuration;
 using IdentityServer4.Models;
 using IdentityServer4.Validation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace IdentityServer.UnitTests.ResponseHandling.AuthorizeInteractionResponseGenerator
@@ -111,10 +111,10 @@ namespace IdentityServer.UnitTests.ResponseHandling.AuthorizeInteractionResponse
         {
             Func<Task> act = () => _subject.ProcessConsentAsync(null, new ConsentResponse());
 
-            act.Should().Throw<ArgumentNullException>()
+            act.Should().ThrowAsync<ArgumentNullException>().Result
                 .And.ParamName.Should().Be("request");
         }
-        
+
         [Fact]
         public async Task ProcessConsentAsync_AllowsNullConsent()
         {
@@ -146,7 +146,7 @@ namespace IdentityServer.UnitTests.ResponseHandling.AuthorizeInteractionResponse
 
             Func<Task> act = () => _subject.ProcessConsentAsync(request);
 
-            act.Should().Throw<ArgumentException>()
+            act.Should().ThrowAsync<ArgumentException>().Result
                 .And.Message.Should().Contain("PromptMode");
         }
 
@@ -166,7 +166,7 @@ namespace IdentityServer.UnitTests.ResponseHandling.AuthorizeInteractionResponse
 
             Func<Task> act = () => _subject.ProcessConsentAsync(request);
 
-            act.Should().Throw<ArgumentException>()
+            act.Should().ThrowAsync<ArgumentException>().Result
                 .And.Message.Should().Contain("PromptMode");
         }
 
@@ -191,7 +191,7 @@ namespace IdentityServer.UnitTests.ResponseHandling.AuthorizeInteractionResponse
             result.Error.Should().Be(OidcConstants.AuthorizeErrors.ConsentRequired);
             AssertUpdateConsentNotCalled();
         }
-        
+
         [Fact]
         public async Task ProcessConsentAsync_PromptModeIsConsent_NoPriorConsent_ReturnsConsentResult()
         {
@@ -245,7 +245,7 @@ namespace IdentityServer.UnitTests.ResponseHandling.AuthorizeInteractionResponse
             var consent = new ConsentResponse
             {
                 RememberConsent = false,
-                ScopesValuesConsented = new string[] {}
+                ScopesValuesConsented = new string[] { }
             };
             var result = await _subject.ProcessConsentAsync(request, consent);
             request.WasConsentShown.Should().BeTrue();
@@ -269,7 +269,7 @@ namespace IdentityServer.UnitTests.ResponseHandling.AuthorizeInteractionResponse
             var consent = new ConsentResponse
             {
                 RememberConsent = false,
-                ScopesValuesConsented = new string[] {}
+                ScopesValuesConsented = new string[] { }
             };
             var result = await _subject.ProcessConsentAsync(request, consent);
             request.WasConsentShown.Should().BeTrue();
@@ -282,7 +282,7 @@ namespace IdentityServer.UnitTests.ResponseHandling.AuthorizeInteractionResponse
         public async Task ProcessConsentAsync_NoPromptMode_ConsentServiceRequiresConsent_ConsentGrantedButMissingRequiredScopes_ReturnsErrorResult()
         {
             RequiresConsent(true);
-            var client = new Client {};
+            var client = new Client { };
             var request = new ValidatedAuthorizeRequest()
             {
                 ResponseMode = OidcConstants.ResponseModes.Fragment,
@@ -314,7 +314,8 @@ namespace IdentityServer.UnitTests.ResponseHandling.AuthorizeInteractionResponse
                 ResponseMode = OidcConstants.ResponseModes.Fragment,
                 State = "12345",
                 RedirectUri = "https://client.com/callback",
-                Client = new Client {
+                Client = new Client
+                {
                     AllowRememberConsent = false
                 },
                 RequestedScopes = new List<string> { "openid", "read", "write" },
@@ -334,7 +335,7 @@ namespace IdentityServer.UnitTests.ResponseHandling.AuthorizeInteractionResponse
             result.IsConsent.Should().BeFalse();
             AssertUpdateConsentNotCalled();
         }
-        
+
         [Fact]
         public async Task ProcessConsentAsync_PromptModeConsent_ConsentGranted_ScopesSelected_ReturnsConsentResult()
         {
@@ -344,7 +345,8 @@ namespace IdentityServer.UnitTests.ResponseHandling.AuthorizeInteractionResponse
                 ResponseMode = OidcConstants.ResponseModes.Fragment,
                 State = "12345",
                 RedirectUri = "https://client.com/callback",
-                Client = new Client {
+                Client = new Client
+                {
                     AllowRememberConsent = false
                 },
                 RequestedScopes = new List<string> { "openid", "read", "write" },
