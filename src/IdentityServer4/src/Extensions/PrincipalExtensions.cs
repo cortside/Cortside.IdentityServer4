@@ -93,7 +93,7 @@ namespace IdentityServer4.Extensions
         }
 
         /// <summary>
-        /// Gets the name.
+        /// Gets the display name.  Uses IIdentity.Name, then upn claim, then sub claim.
         /// </summary>
         /// <param name="principal">The principal.</param>
         /// <returns></returns>
@@ -103,10 +103,11 @@ namespace IdentityServer4.Extensions
             var name = principal.Identity.Name;
             if (name.IsPresent()) return name;
 
-            var sub = principal.FindFirst(JwtClaimTypes.Subject);
-            if (sub != null) return sub.Value;
+            var upn = principal.FindFirst("upn");
+            if (upn != null) return upn.Value;
 
-            return string.Empty;
+            var sub = principal.FindFirst(JwtClaimTypes.Subject);
+            return sub?.Value ?? string.Empty;
         }
 
         /// <summary>
