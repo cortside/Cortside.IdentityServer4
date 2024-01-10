@@ -1,5 +1,8 @@
 # Release 6.1
 
+* Update JDK version for sonarcloud
+* GetDisplayName from PrincipalExtensions now uses Identity.Name, then upn claim and finally falls back on sub claim.  Fixes issue with IdentityServer showing different name as logged in user sometimes.
+
 |Commit|Date|Author|Message|
 |---|---|---|---|
 | 447f46f0 | <span style="white-space:nowrap;">2023-11-29</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  use upn claim before relegating to sub claim for name; update jdk version for sonar
