@@ -1,5 +1,5 @@
-// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
+﻿// Copyright (c) Duende Software. All rights reserved.
+// See LICENSE in the project root for license information.
 
 using System;
 using System.Collections.Generic;
@@ -7,8 +7,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text.Encodings.Web;
 
-namespace IdentityServer4.Extensions {
-    internal static class StringExtensions {
+namespace IdentityServer4.EntityFramework.Storage.Extensions {
+    // NOTE: was internal but without signing going to make public so tests can get to it
+    public static class StringExtensions {
         [DebuggerStepThrough]
         public static string ToSpaceSeparatedString(this IEnumerable<string> list) {
             if (list == null) {
@@ -50,7 +51,6 @@ namespace IdentityServer4.Extensions {
             if (string.IsNullOrWhiteSpace(value)) {
                 return true;
             }
-
             if (value.Length > maxLength) {
                 return true;
             }
