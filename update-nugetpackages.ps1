@@ -13,7 +13,11 @@ gci *.csproj -Recurse | %{ if (select-string -inputobject $_ -Pattern "AsyncAnal
 gci *.csproj -Recurse | %{ if (select-string -inputobject $_ -Pattern "Lindhart.Analyser.MissingAwaitWarning") { echo "remove Lindhart.Analyser.MissingAwaitWarning from $_.Fullname"; dotnet remove $_.FullName package Lindhart.Analyser.MissingAwaitWarning } }
 
 # analyzers for all projects
-gci *.csproj -Recurse | %{ if (-not (select-string -inputobject $_ -Pattern "Microsoft.VisualStudio.Threading.Analyzers")){ echo "add Microsoft.VisualStudio.Threading.Analyzers to $_.Fullname"; dotnet add $_.FullName package Microsoft.VisualStudio.Threading.Analyzers }}
+#gci *.csproj -Recurse | %{ if (-not (select-string -inputobject $_ -Pattern "Microsoft.VisualStudio.Threading.Analyzers")){ echo "add Microsoft.VisualStudio.Threading.Analyzers to $_.Fullname"; dotnet add $_.FullName package Microsoft.VisualStudio.Threading.Analyzers }}
+#gci *.csproj -Recurse | %{ if (-not (select-string -inputobject $_ -Pattern "SonarAnalyzer.CSharp")){ echo "add SonarAnalyzer.CSharp to $_.Fullname"; dotnet add $_.FullName package SonarAnalyzer.CSharp }}
+#gci *.csproj -Recurse | %{ if (-not (select-string -inputobject $_ -Pattern "Roslynator.Analyzers")){ echo "add Roslynator.Analyzers to $_.Fullname"; dotnet add $_.FullName package Roslynator.Analyzers }}
+#gci *.csproj -Recurse | %{ if (-not (select-string -inputobject $_ -Pattern "AsyncFixer")){ echo "add AsyncFixer to $_.Fullname"; dotnet add $_.FullName package AsyncFixer }}
+#gci *.csproj -Recurse | %{ if (-not (select-string -inputobject $_ -Pattern "ParallelHelper")){ echo "add ParallelHelper to $_.Fullname"; dotnet add $_.FullName package ParallelHelper }}
 
 # remove older packages for test projects
 gci *Test*.csproj -Recurse | %{ if (select-string -inputobject $_ -Pattern "coverlet.msbuild") { echo "remove coverlet.msbuild from $_.Fullname"; dotnet remove $_.FullName package coverlet.msbuild } }

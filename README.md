@@ -1,5 +1,5 @@
 # Important update
-This project is not maintained anymore. This repo will be archived when .NET Core 3.1 end of support is reached (13th Dec 2022). All new development is happening in the new [Duende Software](https://github.com/duendesoftware) organization. 
+This is a maintained fork of IdentityServer4 that is no longer being maintained.  It is being maintained for identified issues and for .Net advancements.
 
 See [here](https://duendesoftware.com/products/identityserver) for more details.
 
