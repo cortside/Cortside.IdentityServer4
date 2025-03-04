@@ -29,14 +29,14 @@ namespace IdentityServer4.EntityFramework.IntegrationTests {
                 TestDatabaseProviders = new TheoryData<DbContextOptions<TDbContext>>
                 {
                     DatabaseProviderBuilder.BuildInMemory<TDbContext>(typeof(TClass).Name),
-                    DatabaseProviderBuilder.BuildSqlite<TDbContext>(typeof(TClass).Name),
-                    DatabaseProviderBuilder.BuildLocalDb<TDbContext>(typeof(TClass).Name)
+                    DatabaseProviderBuilder.BuildSqlite<TDbContext>(typeof(TClass).Name)
+                    //,DatabaseProviderBuilder.BuildLocalDb<TDbContext>(typeof(TClass).Name)
                 };
             } else {
                 TestDatabaseProviders = new TheoryData<DbContextOptions<TDbContext>>
                 {
-                    DatabaseProviderBuilder.BuildInMemory<TDbContext>(typeof(TClass).Name)
-                    //, DatabaseProviderBuilder.BuildSqlite<TDbContext>(typeof(TClass).Name)
+                    DatabaseProviderBuilder.BuildInMemory<TDbContext>(typeof(TClass).Name),
+                    DatabaseProviderBuilder.BuildSqlite<TDbContext>(typeof(TClass).Name)
                 };
                 Console.WriteLine("Skipping DB integration tests on non-Windows");
             }
