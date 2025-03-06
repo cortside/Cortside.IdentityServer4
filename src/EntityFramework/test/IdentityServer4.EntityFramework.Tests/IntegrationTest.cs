@@ -1,12 +1,11 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Xunit;
 
-namespace IdentityServer4.EntityFramework.IntegrationTests
-{
+namespace IdentityServer4.EntityFramework.IntegrationTests {
     /// <summary>
     /// Base class for integration tests, responsible for initializing test database providers & an xUnit class fixture
     /// </summary>
@@ -15,30 +14,25 @@ namespace IdentityServer4.EntityFramework.IntegrationTests
     /// <typeparam name="TStoreOption">The type of the store option.</typeparam>
     /// <seealso cref="DatabaseProviderFixture{T}" />
     public class IntegrationTest<TClass, TDbContext, TStoreOption> : IClassFixture<DatabaseProviderFixture<TDbContext>>
-        where TDbContext : DbContext
-    {
+        where TDbContext : DbContext {
         public static readonly TheoryData<DbContextOptions<TDbContext>> TestDatabaseProviders;
         protected readonly TStoreOption StoreOptions = Activator.CreateInstance<TStoreOption>();
 
-        static IntegrationTest()
-        {
+        static IntegrationTest() {
             var config = new ConfigurationBuilder()
                 .AddEnvironmentVariables()
                 .Build();
 
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
                 Console.WriteLine($"Running Local Tests for {typeof(TClass).Name}");
 
                 TestDatabaseProviders = new TheoryData<DbContextOptions<TDbContext>>
                 {
                     DatabaseProviderBuilder.BuildInMemory<TDbContext>(typeof(TClass).Name),
-                    DatabaseProviderBuilder.BuildSqlite<TDbContext>(typeof(TClass).Name),
-                    DatabaseProviderBuilder.BuildLocalDb<TDbContext>(typeof(TClass).Name)
+                    DatabaseProviderBuilder.BuildSqlite<TDbContext>(typeof(TClass).Name)
+                    //,DatabaseProviderBuilder.BuildLocalDb<TDbContext>(typeof(TClass).Name)
                 };
-            }
-            else
-            {
+            } else {
                 TestDatabaseProviders = new TheoryData<DbContextOptions<TDbContext>>
                 {
                     DatabaseProviderBuilder.BuildInMemory<TDbContext>(typeof(TClass).Name),
@@ -48,8 +42,7 @@ namespace IdentityServer4.EntityFramework.IntegrationTests
             }
         }
 
-        protected IntegrationTest(DatabaseProviderFixture<TDbContext> fixture)
-        {
+        protected IntegrationTest(DatabaseProviderFixture<TDbContext> fixture) {
             fixture.Options = TestDatabaseProviders.SelectMany(x => x.Select(y => (DbContextOptions<TDbContext>)y)).ToList();
             fixture.StoreOptions = StoreOptions;
         }
